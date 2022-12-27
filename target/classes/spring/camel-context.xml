@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring       https://camel.apache.org/schema/spring/camel-spring-2.23.3.xsd">
-	<bean class="org.mycompany.processor.ProcessorSaveCV" id="SaveCV" />
-	<bean class="org.apache.camel.model.dataformat.JsonDataFormat" id="jsonDataformat">
-		<property name="unmarshalType" value="java.util.Map" />
-		<property name="library" value="Jackson" />
-	</bean>
-	<camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
-		<route id="_route1">
-			<from id="_from1" uri="jms:queue:EnvoiCV" />
-			<unmarshal id="_unmarshal1">
-				<json library="Jackson" unmarshalTypeName="org.mycompany.model.CV" />
-			</unmarshal>
-			<log id="_log345" message="Message envoyé à l'admin avec succès ! Le message était : ${body}" />
-			<process id="_process1" ref="SaveCV" />
-		</route>
-	</camelContext>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring       https://camel.apache.org/schema/spring/camel-spring-2.23.3.xsd">
+    <bean class="org.mycompany.processor.ProcessorSaveCV" id="SaveCV"/>
+    <bean class="org.apache.camel.model.dataformat.JsonDataFormat" id="jsonDataformat">
+        <property name="unmarshalType" value="java.util.Map"/>
+        <property name="library" value="Jackson"/>
+    </bean>
+    <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+        <route id="_route1">
+            <from id="_from1" uri="jms:queue:EnvoiCV"/>
+            <log id="_log345" message="Message recu à l'admin avec succès ! Le message était : ${body}"/>
+            <process id="_process1" ref="SaveCV"/>
+        </route>
+    </camelContext>
 </beans>

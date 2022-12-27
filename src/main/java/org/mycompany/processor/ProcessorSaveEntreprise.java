@@ -5,7 +5,9 @@ package org.mycompany.processor;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.mycompany.model.CV;
+import org.mycompany.model.Entreprise;
 import org.mycompany.repo.ICVRepository;
+import org.mycompany.repo.IEntrepriseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,7 +17,7 @@ public class ProcessorSaveEntreprise implements Processor {
 
 
 	@Autowired
-	ICVRepository icvRepository;
+	IEntrepriseRepository iEntrepriseRepository;
 
 	@Override
 	public void process(Exchange exchange) throws Exception {
@@ -27,15 +29,18 @@ public class ProcessorSaveEntreprise implements Processor {
 		System.out.println("mapper reussie ");
 		mapper.enable(SerializationFeature.INDENT_OUTPUT);
 		System.out.println("serialization reussie");
-		CV cv = mapper.readValue(CVJSON, CV.class);
-		System.out.println("id : " + cv.getId());
-		System.out.println("description : " + cv.getDescription());
-		System.out.println("candidat: " + cv.getCandidat());
-		System.out.println("class: " + cv.getClass());
+		Entreprise en = mapper.readValue(CVJSON, Entreprise.class);
+		System.out.println("id : " + en.getId());
+		System.out.println("nom : " + en.getNom());
+		System.out.println("taille: " + en.getTaille());
+		System.out.println("note: " + en.getNote());
+		System.out.println("liste Test: " + en.getListeTests());
+		System.out.println("liste Projet: " + en.getListeProjets());
+		System.out.println("class: " + en.getClass());
 
-		icvRepository.save(cv);
+		iEntrepriseRepository.save(en);
 
-		System.out.println("On a bien récupéré et enregistré le CV depuis activeMQ : " + cv.toString());
+		System.out.println("On a bien récupéré et enregistré le CV depuis activeMQ : " + en.toString());
 
 	}
 }

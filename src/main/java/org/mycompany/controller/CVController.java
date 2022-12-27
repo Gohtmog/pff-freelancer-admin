@@ -1,5 +1,6 @@
 package org.mycompany.controller;
 
+import java.io.FileWriter;
 import java.util.List;
 
 import javax.jms.ConnectionFactory;
@@ -9,7 +10,9 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.component.jms.JmsComponent;
 import org.apache.camel.impl.DefaultCamelContext;
+import org.apache.camel.json.simple.JsonObject;
 import org.mycompany.model.CV;
+import org.mycompany.model.Candidat;
 import org.mycompany.repo.ICVRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -74,6 +77,7 @@ public class CVController {
 		context.stop();
 	}
 	
-	
+
+
 
 }

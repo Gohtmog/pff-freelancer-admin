@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-public class ProcessorSaveCV implements Processor {
+public class ProcessorSaveEntreprise implements Processor {
 
 
 	@Autowired

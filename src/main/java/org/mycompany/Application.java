@@ -18,7 +18,7 @@ package org.mycompany;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ImportResource;
-// test
+
 /**
  * A spring-boot application that includes a Camel route builder to setup the Camel routes
  */

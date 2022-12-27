@@ -5,7 +5,9 @@ package org.mycompany.processor;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.mycompany.model.CV;
+import org.mycompany.model.Notes;
 import org.mycompany.repo.ICVRepository;
+import org.mycompany.repo.INotesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,7 +17,7 @@ public class ProcessorSaveNotes implements Processor {
 
 
 	@Autowired
-	ICVRepository icvRepository;
+	INotesRepository iNotesRepository;
 
 	@Override
 	public void process(Exchange exchange) throws Exception {
@@ -27,15 +29,15 @@ public class ProcessorSaveNotes implements Processor {
 		System.out.println("mapper reussie ");
 		mapper.enable(SerializationFeature.INDENT_OUTPUT);
 		System.out.println("serialization reussie");
-		CV cv = mapper.readValue(CVJSON, CV.class);
-		System.out.println("id : " + cv.getId());
-		System.out.println("description : " + cv.getDescription());
-		System.out.println("candidat: " + cv.getCandidat());
-		System.out.println("class: " + cv.getClass());
+		Notes no = mapper.readValue(CVJSON, Notes.class);
+		System.out.println("id : " + no.getId());
+		System.out.println("note : " + no.getNote());
+		System.out.println("candidat: " + no.getCandidat());
+		System.out.println("class: " + no.getClass());
 
-		icvRepository.save(cv);
+		iNotesRepository.save(no);
 
-		System.out.println("On a bien récupéré et enregistré le CV depuis activeMQ : " + cv.toString());
+		System.out.println("On a bien récupéré et enregistré le CV depuis activeMQ : " + no.toString());
 
 	}
 }

@@ -1,46 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring       https://camel.apache.org/schema/spring/camel-spring-2.23.3.xsd">
-    <bean class="org.mycompany.processor.ProcessorSaveCV" id="SaveCV"/>
-    <bean class="org.mycompany.processor.ProcessorSaveCandidat" id="SaveCandidat"/>
-    <bean class="org.mycompany.processor.ProcessorSaveEntreprise" id="SaveEntreprise"/>
-    <bean class="org.mycompany.processor.ProcessorSaveNotes" id="SaveNotes"/>
-    <bean class="org.mycompany.processor.ProcessorSaveProjet" id="SaveProjet"/>
-    <bean class="org.mycompany.processor.ProcessorSaveTest" id="SaveTest"/>
-    <bean class="org.apache.camel.model.dataformat.JsonDataFormat" id="jsonDataformat">
-        <property name="unmarshalType" value="java.util.Map"/>
-        <property name="library" value="Jackson"/>
-    </bean>
-    <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
-        <route id="_routeCV">
-            <from id="_fromCV" uri="jms:queue:EnvoiCV"/>
-            <log id="_logCV" message="CV recu à l'admin avec succès ! Le message était : ${body}"/>
-            <process id="_processCV" ref="SaveCV"/>
-        </route>
-        <route id="_routeCandidat">
-            <from id="_fromCA" uri="jms:queue:EnvoiCandidat"/>
-            <log id="_logCA" message="Candidat recu à l'admin avec succès ! Le message était : ${body}"/>
-            <process id="_processCA" ref="SaveCandidat"/>
-        </route>
-        <route id="_routeEntreprise">
-            <from id="_fromEN" uri="jms:queue:EnvoiEntreprise"/>
-            <log id="_logEN" message="Entreprise recu à l'admin avec succès ! Le message était : ${body}"/>
-            <process id="_processEN" ref="SaveEntreprise"/>
-        </route>
-        <route id="_routeNotes">
-            <from id="_fromNO" uri="jms:queue:EnvoiNotes"/>
-            <log id="_logNO" message="Notes recu à l'admin avec succès ! Le message était : ${body}"/>
-            <process id="_processNo" ref="SaveNotes"/>
-        </route>
-        <route id="_routeProjet">
-            <from id="_fromPR" uri="jms:queue:EnvoiProjet"/>
-            <log id="_logPR" message="Projet recu à l'admin avec succès ! Le message était : ${body}"/>
-            <process id="_processPR" ref="SaveProjet"/>
-        </route>
-        <route id="_routeTest">
-            <from id="_fromTE" uri="jms:queue:EnvoiTest"/>
-            <log id="_logTE" message="Test recu à l'admin avec succès ! Le message était : ${body}"/>
-            <process id="_processTE" ref="SaveTest"/>
-        </route>
-    </camelContext>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring       https://camel.apache.org/schema/spring/camel-spring-2.23.3.xsd">
+	<bean class="org.mycompany.processor.ProcessorSaveCV" id="SaveCV" />
+	<bean class="org.mycompany.processor.ProcessorSaveCandidat" id="SaveCandidat" />
+	<bean class="org.mycompany.processor.ProcessorSaveEntreprise" id="SaveEntreprise" />
+	<bean class="org.mycompany.processor.ProcessorSaveNotes" id="SaveNotes" />
+	<bean class="org.mycompany.processor.ProcessorSaveProjet" id="SaveProjet" />
+	<bean class="org.mycompany.processor.ProcessorSaveTest" id="SaveTest" />
+	<bean class="org.apache.camel.model.dataformat.JsonDataFormat" id="jsonDataformat">
+		<property name="unmarshalType" value="java.util.Map" />
+		<property name="library" value="Jackson" />
+	</bean>
+	<camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+		<route id="_routeCV">
+			<from id="_fromCV" uri="jms:queue:EnvoiCV" />
+			<log id="_logCV" message="CV recu à l'admin avec succès ! Le message était : ${body}" />
+			<process id="_processCV" ref="SaveCV" />
+		</route>
+		<route id="_routeCandidat">
+			<from id="_fromCA" uri="jms:queue:EnvoiCandidat" />
+			<log id="_logCA" message="Candidat recu à l'admin avec succès ! Le message était : ${body}" />
+			<process id="_processCA" ref="SaveCandidat" />
+		</route>
+		<route id="_routeEntreprise">
+			<from id="_fromEN" uri="jms:queue:EnvoiEntreprise" />
+			<log id="_logEN" message="Entreprise recu à l'admin avec succès ! Le message était : ${body}" />
+			<process id="_processEN" ref="SaveEntreprise" />
+		</route>
+		<route id="_routeNotes">
+			<from id="_fromNO" uri="jms:queue:EnvoiNotes" />
+			<log id="_logNO" message="Notes recu à l'admin avec succès ! Le message était : ${body}" />
+			<process id="_processNo" ref="SaveNotes" />
+		</route>
+		<route id="_routeProjet">
+			<from id="_fromPR" uri="jms:queue:EnvoiProjet" />
+			<log id="_logPR" message="Projet recu à l'admin avec succès ! Le message était : ${body}" />
+			<process id="_processPR" ref="SaveProjet" />
+		</route>
+		<route id="_routeTest">
+			<from id="_fromTE" uri="jms:queue:EnvoiTest" />
+			<log id="_logTE" message="Test recu à l'admin avec succès ! Le message était : ${body}" />
+			<process id="_processTE" ref="SaveTest" />
+		</route>
+	</camelContext>
 </beans>

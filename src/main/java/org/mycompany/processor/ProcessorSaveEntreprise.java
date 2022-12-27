@@ -4,9 +4,7 @@ package org.mycompany.processor;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
-import org.mycompany.model.CV;
 import org.mycompany.model.Entreprise;
-import org.mycompany.repo.ICVRepository;
 import org.mycompany.repo.IEntrepriseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -33,7 +31,8 @@ public class ProcessorSaveEntreprise implements Processor {
 		System.out.println("id : " + en.getId());
 		System.out.println("nom : " + en.getNom());
 		System.out.println("taille: " + en.getTaille());
-		System.out.println("note: " + en.getMoyNotes());
+		System.out.println("moy note: " + en.getMoyNotes());		
+		System.out.println("liste note: " + en.getListeNotes());
 		System.out.println("liste Test: " + en.getListeTests());
 		System.out.println("liste Projet: " + en.getListeProjets());
 		System.out.println("class: " + en.getClass());

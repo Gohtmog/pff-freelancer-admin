@@ -39,10 +39,10 @@ public class ProcessorSaveCV implements Processor {
 		System.out.println("candidat: " + cv.getCandidat());
 		System.out.println("class: " + cv.getClass());
 		icvRepository.save(cv);
-		Candidat ca = cv.getCandidat();
-		generalController.lienCVCandidat(cv, ca);
-		iCandidatRepository.save(ca); 
+//		Candidat ca = cv.getCandidat();
+//		generalController.lienCVCandidat(cv, ca);
+//		iCandidatRepository.save(ca); 
 		System.out.println("On a bien récupéré et enregistré le CV depuis activeMQ : " + cv.toString());
-		System.out.println("On a bien récupéré et enregistré le Candidat dans le cv depuis activeMQ : " + ca.toString());
+
 	}
 }

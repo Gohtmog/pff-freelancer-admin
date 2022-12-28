@@ -58,15 +58,15 @@ public class ProcessorSaveCandidat implements Processor {
 			generalController.lienProjetCandidat(pro, ca);
 			iProjetRepository.save(pro);
 		}
-		
-		for (CV cv : ca.getListeCV()) {
-			generalController.lienCVCandidat(cv, ca);
-			icvRepository.save(cv);
-		}
-		for (Notes notes : ca.getListeNotes()) {
-			generalController.lienNoteCandidat(notes, ca);
-			iNotesRepository.save(notes);
-		}
+//		
+//		for (CV cv : ca.getListeCV()) {
+//			generalController.lienCVCandidat(cv, ca);
+//			icvRepository.save(cv);
+//		}
+//		for (Notes notes : ca.getListeNotes()) {
+//			generalController.lienNoteCandidat(notes, ca);
+//			iNotesRepository.save(notes);
+//		}
 
 		System.out.println("On a bien récupéré et enregistré le Candidat depuis activeMQ : " + ca.toString());
 

@@ -36,6 +36,6 @@ public class ProcessorPromptCV implements Processor {
 		CV cv = new CV(nouvelID, corpsCV, cand);
 
 		exchange.getIn().setBody(cv.toString());
-		System.out.println("On a bien défini le message comme étant " + cv.toString());
+		System.out.println("On a bien défini le cv comme étant " + cv.toString());
 	}
 }

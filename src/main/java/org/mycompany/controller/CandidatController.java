@@ -69,7 +69,6 @@ public class CandidatController {
 			Candidat.setNom(newCandidat.getNom());
 			Candidat.setPrenom(newCandidat.getPrenom());
 			Candidat.setMoyNotes(newCandidat.getMoyNotes());
-			Candidat.setListeTest(newCandidat.getListeTest());
 			Candidat.setListeProjet(newCandidat.getListeProjet());
 			Candidat.setListeCV(newCandidat.getListeCV());
 			Candidat.setListeNotes(newCandidat.getListeNotes());
@@ -101,7 +100,6 @@ public class CandidatController {
 		candidatJSON.put("moyNotes", can.getMoyNotes());
 		candidatJSON.put("listeCV", new ArrayList<>());
 		candidatJSON.put("listeProjet", new ArrayList<>());
-		candidatJSON.put("listeTest", new ArrayList<>());
 		candidatJSON.put("listeNotes", new ArrayList<>());
 //		String output = candidatJSON.toJson().toString();
 //		System.out.println(candidatJSON);

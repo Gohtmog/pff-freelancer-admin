@@ -48,10 +48,9 @@ public class EntrepriseController {
 			Entreprise.setNom(newEntreprise.getNom());
 			Entreprise.setCapital(newEntreprise.getCapital());
 			Entreprise.setMoyNotes(newEntreprise.getMoyNotes());
-			Entreprise.setListeNotes(newEntreprise.getListeNotes());
+			Entreprise.setlisteNotesEntreprise(newEntreprise.getlisteNotesEntreprise());
 			Entreprise.setTaille(newEntreprise.getTaille());
 			Entreprise.setListeProjets(newEntreprise.getListeProjets());
-			Entreprise.setListeTests(newEntreprise.getListeTests());
 			return ier.save(Entreprise);
 		}).orElseGet(() -> {
 			return ier.save(newEntreprise);
@@ -67,7 +66,6 @@ public class EntrepriseController {
 		entJSON.put("taille", ent.getTaille());
 		entJSON.put("listeNotes", new ArrayList<>());
 		entJSON.put("listeProjets", new ArrayList<>());
-		entJSON.put("listeTests", new ArrayList<>());
 		String output = entJSON.toJson().toString();
 		return output;
 	}
@@ -81,7 +79,6 @@ public class EntrepriseController {
 		entJSON.put("listeNotes", new ArrayList<>());
 		entJSON.put("taille", ent.getTaille());
 		entJSON.put("listeProjets", new ArrayList<>());
-		entJSON.put("listeTests", new ArrayList<>());
 		return entJSON;
 	}
 

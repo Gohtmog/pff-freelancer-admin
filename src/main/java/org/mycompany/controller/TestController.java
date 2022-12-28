@@ -47,8 +47,8 @@ public class TestController {
 			Test.setId(newTest.getId());
 			Test.setSujet(newTest.getSujet());
 			Test.setValide(newTest.getValide());
-			Test.setListeCandidats(newTest.getListeCandidats());
-			Test.setListeEntreprises(newTest.getListeEntreprises());
+			Test.setCandidat(newTest.getCandidat());
+			Test.setEntreprise(newTest.getEntreprise());
 			return itr.save(Test);
 		}).orElseGet(() -> {
 			return itr.save(newTest);

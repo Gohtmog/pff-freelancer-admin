@@ -39,7 +39,7 @@ public class ProcessorSaveNotesEntreprise implements Processor {
 
 		iNotesEntrepriseRepository.save(no);
 
-		System.out.println("On a bien récupéré et enregistré le CV depuis activeMQ : " + no.toString());
+		System.out.println("On a bien récupéré et enregistré la note entreprise depuis activeMQ : " + no.toString());
 
 	}
 }

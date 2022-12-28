@@ -41,7 +41,7 @@ public class ProcessorSaveProjet implements Processor {
 
 		iProjetRepository.save(pr);
 
-		System.out.println("On a bien récupéré et enregistré le CV depuis activeMQ : " + pr.toString());
+		System.out.println("On a bien récupéré et enregistré le projet depuis activeMQ : " + pr.toString());
 
 	}
 }

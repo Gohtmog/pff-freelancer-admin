@@ -32,14 +32,13 @@ public class ProcessorSaveEntreprise implements Processor {
 		System.out.println("nom : " + en.getNom());
 		System.out.println("taille: " + en.getTaille());
 		System.out.println("moy note: " + en.getMoyNotes());		
-		System.out.println("liste note: " + en.getListeNotes());
-		System.out.println("liste Test: " + en.getListeTests());
+		System.out.println("liste note: " + en.getlisteNotesEntreprise());
 		System.out.println("liste Projet: " + en.getListeProjets());
 		System.out.println("class: " + en.getClass());
 
 		iEntrepriseRepository.save(en);
 
-		System.out.println("On a bien récupéré et enregistré le CV depuis activeMQ : " + en.toString());
+		System.out.println("On a bien récupéré et enregistré l'entreprise depuis activeMQ : " + en.toString());
 
 	}
 }

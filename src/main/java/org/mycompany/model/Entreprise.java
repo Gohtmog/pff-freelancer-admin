@@ -35,15 +35,11 @@ public class Entreprise {
 //	@JoinColumn(name = "idNotes")
 	private List<NotesEntreprise> listeNotesEntreprise;
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "T_Test_Entreprise_Associations", joinColumns = @JoinColumn(name = "idTest"), inverseJoinColumns = @JoinColumn(name = "idEntreprise"))
-	private List<Test> listeTests;
-
 	@OneToMany(cascade = CascadeType.ALL)
 //	@JoinColumn(name = "idEntreprise")
 	private List<Projet> listeProjets = new ArrayList<>();
 
-	public Entreprise(int id, String nom, int taille, double capital, List<NotesEntreprise> listeNotesEntreprise, List<Test> listeTests,
+	public Entreprise(int id, String nom, int taille, double capital, List<NotesEntreprise> listeNotesEntreprise,
 			List<Projet> listeProjets) {
 		super();
 		this.id = id;
@@ -64,7 +60,6 @@ public class Entreprise {
 			moyNotes = moyNotes / count;
 		}
 		moyNotes = moyNote;
-		this.listeTests = listeTests;
 		this.listeProjets = listeProjets;
 		this.listeNotesEntreprise = listeNotesEntreprise;
 	}
@@ -129,13 +124,7 @@ public class Entreprise {
 		this.listeNotesEntreprise = listeNotesEntreprise;
 	}
 
-	public List<Test> getListeTests() {
-		return listeTests;
-	}
 
-	public void setListeTests(List<Test> listeTests) {
-		this.listeTests = listeTests;
-	}
 
 	public List<Projet> getListeProjets() {
 		return listeProjets;
@@ -148,7 +137,7 @@ public class Entreprise {
 	@Override
 	public String toString() {
 		return "Entreprise [id=" + id + ", nom=" + nom + ", taille=" + taille + ", capital=" + capital + ", moyNotes="
-				+ moyNotes + ", listeNotesEntreprise=" + listeNotesEntreprise + ", listeTests=" + listeTests + ", listeProjets="
+				+ moyNotes + ", listeNotesEntreprise=" + listeNotesEntreprise + ", listeProjets="
 				+ listeProjets + "]";
 	}
 

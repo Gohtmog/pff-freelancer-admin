@@ -32,7 +32,7 @@ public class ProcessorSaveTest implements Processor {
 		System.out.println("sujet : " + te.getSujet());
 		System.out.println("valide: " + te.getValide());
 		System.out.println("candidat: " + te.getCandidat());
-		System.out.println("liste entreprise: " + te.getEntreprise());
+		System.out.println("entreprise: " + te.getEntreprise());
 		System.out.println("class: " + te.getClass());
 
 		iTestRepository.save(te);

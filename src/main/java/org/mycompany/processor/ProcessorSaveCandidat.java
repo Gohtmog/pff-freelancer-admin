@@ -35,7 +35,6 @@ public class ProcessorSaveCandidat implements Processor {
 		System.out.println("prenom: " + ca.getPrenom());
 		System.out.println("moynotes: " + ca.getMoyNotes());
 		System.out.println("listesProjet: " + ca.getListeProjet());
-		System.out.println("listesTest: " + ca.getListeTest());
 		System.out.println("listesCV: " + ca.getListeCV());
 		System.out.println("listesNotes: " + ca.getListeNotes());		
 		System.out.println("class: " + ca.getClass());

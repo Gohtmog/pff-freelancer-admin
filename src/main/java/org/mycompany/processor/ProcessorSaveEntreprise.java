@@ -33,7 +33,6 @@ public class ProcessorSaveEntreprise implements Processor {
 		System.out.println("taille: " + en.getTaille());
 		System.out.println("moy note: " + en.getMoyNotes());		
 		System.out.println("liste note: " + en.getlisteNotesEntreprise());
-		System.out.println("liste Test: " + en.getListeTests());
 		System.out.println("liste Projet: " + en.getListeProjets());
 		System.out.println("class: " + en.getClass());
 

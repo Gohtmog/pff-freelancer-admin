@@ -33,10 +33,6 @@ public class Candidat {
 	@JoinTable(name = "T_Projet_Candidat_Associations", joinColumns = @JoinColumn(name = "idProjet"), inverseJoinColumns = @JoinColumn(name = "idCandidat"))
 	private List<Projet> listeProjets;
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "T_Test_Candidat_Associations", joinColumns = @JoinColumn(name = "idTest"), inverseJoinColumns = @JoinColumn(name = "idCandidat"))
-	private List<Test> listeTest;
-
 	@OneToMany(cascade = CascadeType.ALL)
 //	@JoinColumn(name = "idCV")
 	private List<CV> listeCV;
@@ -50,7 +46,7 @@ public class Candidat {
 		super();
 	}
 
-	public Candidat(int id, String nom, String prenom, List<Projet> listeProjet, List<Test> listeTest, List<CV> listeCV,
+	public Candidat(int id, String nom, String prenom, List<Projet> listeProjet, List<CV> listeCV,
 			List<Notes> listeNotes2) {
 		super();
 		this.id = id;
@@ -71,7 +67,6 @@ public class Candidat {
 		}
 		moyNote = moyNotes;
 		this.listeProjets = listeProjet;
-		this.listeTest = listeTest;
 		this.listeCV = listeCV;
 		this.listeNotes = listeNotes2;
 	
@@ -117,13 +112,6 @@ public class Candidat {
 		listeProjets = listeProjet;
 	}
 
-	public List<Test> getListeTest() {
-		return listeTest;
-	}
-
-	public void setListeTest(List<Test> listeTest) {
-		this.listeTest = listeTest;
-	}
 
 	public List<CV> getListeCV() {
 		return listeCV;
@@ -145,7 +133,7 @@ public class Candidat {
 	@Override
 	public String toString() {
 		return "Candidat [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", moyNotes=" + moyNotes
-				+ ", ListeProjet=" + listeProjets + ", listeTest=" + listeTest + ", listeCV=" + listeCV + ", listeNotes="
+				+ ", ListeProjet=" + listeProjets + ", listeCV=" + listeCV + ", listeNotes="
 				+ listeNotes + "]";
 	}
 

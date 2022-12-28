@@ -6,8 +6,8 @@ import org.mycompany.model.CV;
 import org.mycompany.model.Candidat;
 import org.mycompany.model.Entreprise;
 import org.mycompany.model.Notes;
+import org.mycompany.model.NotesEntreprise;
 import org.mycompany.model.Projet;
-import org.mycompany.model.Test;
 import org.mycompany.repo.ICVRepository;
 import org.mycompany.repo.ICandidatRepository;
 import org.mycompany.repo.IEntrepriseRepository;
@@ -60,27 +60,6 @@ public class GeneralController {
 
 	}
 
-//	public void lienTestCandidat(Test test, Candidat candidat) {
-//		List<Test> lT = candidat.getListeTest();
-//		List<Candidat> lC = test.getListeCandidats();
-//
-//		if (!(lT.contains(test))) {
-//			lT.add(test);
-//		} else {
-//			System.out.println("Le test est déjà enregistré chez le candidat.");
-//		}
-//
-//		if (!(lC.contains(candidat))) {
-//			lC.add(candidat);
-//		} else {
-//			System.out.println("Le candidat est déjà enregistré pour ce test.");
-//		}
-//
-//		candidat.setListeTest(lT);
-//		test.setListeCandidats(lC);
-//		System.out.println("On a mis à jour test et/ou candidat.");
-//	}
-
 	public void lienCVCandidat(CV cv, Candidat candidat) {
 		List<CV> lCV = candidat.getListeCV();
 
@@ -121,28 +100,26 @@ public class GeneralController {
 
 	}
 
-//	public void lienTestEntreprise(Test test, Entreprise ent) {
-//		List<Test> lT = ent.getListeTests();
-//		List<Entreprise> lE = test.getListeEntreprises();
-//
-//		if (!(lT.contains(test))) {
-//			lT.add(test);
-//		} else {
-//			System.out.println("Le test est déjà enregistré pour cette entreprise.");
-//		}
-//
-//		if (!(lE.contains(ent))) {
-//			lE.add(ent);
-//		} else {
-//			System.out.println("L'entreprise est déjà enregistrée pour ce test.");
-//		}
-//
-//		ent.setListeTests(lT);
-//		test.setListeEntreprises(lE);
-//		System.out.println("On a mis à jour test et/ou entreprise.");
-//
-//	}
-	
+	public void lienNoteEntrepriseEntreprise(NotesEntreprise notesE, Entreprise ent) {
+		List<NotesEntreprise> lNE = ent.getlisteNotesEntreprise();
+
+		if (!(lNE.contains(notesE))) {
+			lNE.add(notesE);
+		} else {
+			System.out.println("La note est déjà enregistrée chez l'entreprise.");
+		}
+
+		if (notesE.getEntreprise() == null) {
+			notesE.setEntreprise(ent);
+		} else {
+			System.out.println("L'entreprise est déjà enregistrée pour cette note.");
+		}
+
+		ent.setlisteNotesEntreprise(lNE);
+		System.out.println("On a mis à jour notes et/ou entreprise.");
+
+	}
+
 	public void lienProjetEntreprise(Projet pro, Entreprise ent) {
 		List<Projet> lP = ent.getListeProjets();
 

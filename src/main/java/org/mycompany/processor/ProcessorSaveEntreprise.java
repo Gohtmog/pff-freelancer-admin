@@ -54,15 +54,15 @@ public class ProcessorSaveEntreprise implements Processor {
 
 		iEntrepriseRepository.save(en);
 
-		for (Projet pro : en.getListeProjets()) {
-			generalController.lienProjetEntreprise(pro, en);
-			iProjetRepository.save(pro);
-		}
-
-		for (NotesEntreprise notesE : en.getlisteNotesEntreprise()) {
-			generalController.lienNoteEntrepriseEntreprise(notesE, en);
-			iNotesEntrepriseRepository.save(notesE);
-		}
+//		for (Projet pro : en.getListeProjets()) {
+//			generalController.lienProjetEntreprise(pro, en);
+//			iProjetRepository.save(pro);
+//		}
+//
+//		for (NotesEntreprise notesE : en.getlisteNotesEntreprise()) {
+//			generalController.lienNoteEntrepriseEntreprise(notesE, en);
+//			iNotesEntrepriseRepository.save(notesE);
+//		}
 		System.out.println("On a bien récupéré et enregistré l'entreprise depuis activeMQ : " + en.toString());
 
 	}

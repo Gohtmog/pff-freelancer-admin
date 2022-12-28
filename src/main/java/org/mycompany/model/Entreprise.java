@@ -31,11 +31,11 @@ public class Entreprise {
 
 	private int moyNotes;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "Entreprise")
 //	@JoinColumn(name = "idNotes")
 	private List<NotesEntreprise> listeNotesEntreprise;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "entreprise")
 //	@JoinColumn(name = "idEntreprise")
 	private List<Projet> listeProjets = new ArrayList<>();
 

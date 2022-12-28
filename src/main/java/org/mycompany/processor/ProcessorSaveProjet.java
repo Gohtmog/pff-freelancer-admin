@@ -47,10 +47,7 @@ public class ProcessorSaveProjet implements Processor {
 		System.out.println("class: " + pr.getClass());
 
 		iProjetRepository.save(pr);
-		for (Candidat cand : pr.getListeCandidats()) {
-			generalController.lienProjetCandidat(pr, cand);
-			iCandidatRepository.save(cand);
-		}
+
 		
 		System.out.println("On a bien récupéré et enregistré le projet depuis activeMQ : " + pr.toString());
 

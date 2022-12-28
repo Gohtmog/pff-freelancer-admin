@@ -79,7 +79,6 @@ public class GeneralController {
 //		candidat.setListeTest(lT);
 //		test.setListeCandidats(lC);
 //		System.out.println("On a mis à jour test et/ou candidat.");
-
 //	}
 
 	public void lienCVCandidat(CV cv, Candidat candidat) {

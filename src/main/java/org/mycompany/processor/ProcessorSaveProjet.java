@@ -4,9 +4,12 @@ package org.mycompany.processor;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
+import org.mycompany.controller.GeneralController;
 import org.mycompany.model.CV;
+import org.mycompany.model.Candidat;
 import org.mycompany.model.Projet;
 import org.mycompany.repo.ICVRepository;
+import org.mycompany.repo.ICandidatRepository;
 import org.mycompany.repo.IProjetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,9 +18,13 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class ProcessorSaveProjet implements Processor {
 
+	@Autowired
+	GeneralController generalController;
 
 	@Autowired
 	IProjetRepository iProjetRepository;
+	@Autowired
+	ICandidatRepository iCandidatRepository;
 
 	@Override
 	public void process(Exchange exchange) throws Exception {
@@ -40,7 +47,11 @@ public class ProcessorSaveProjet implements Processor {
 		System.out.println("class: " + pr.getClass());
 
 		iProjetRepository.save(pr);
-
+		for (Candidat cand : pr.getListeCandidats()) {
+			generalController.lienProjetCandidat(pr, cand);
+			iCandidatRepository.save(cand);
+		}
+		
 		System.out.println("On a bien récupéré et enregistré le projet depuis activeMQ : " + pr.toString());
 
 	}

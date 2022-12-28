@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring       https://camel.apache.org/schema/spring/camel-spring-2.23.3.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring       https://camel.apache.org/schema/spring/camel-spring-2.23.3.xsd">
     <bean class="org.mycompany.processor.ProcessorSaveCV" id="SaveCV"/>
     <bean class="org.mycompany.processor.ProcessorSaveCandidat" id="SaveCandidat"/>
     <bean class="org.mycompany.processor.ProcessorSaveEntreprise" id="SaveEntreprise"/>
     <bean class="org.mycompany.processor.ProcessorSaveNotes" id="SaveNotes"/>
+    <bean class="org.mycompany.processor.ProcessorSaveNotesEntreprise" id="SaveNotesEntreprise"/>
     <bean class="org.mycompany.processor.ProcessorSaveProjet" id="SaveProjet"/>
     <bean class="org.mycompany.processor.ProcessorSaveTest" id="SaveTest"/>
     <bean class="org.apache.camel.model.dataformat.JsonDataFormat" id="jsonDataformat">
@@ -30,6 +32,11 @@
             <from id="_fromNO" uri="jms:queue:EnvoiNotes"/>
             <log id="_logNO" message="Notes recu à l'admin avec succès ! Le message était : ${body}"/>
             <process id="_processNo" ref="SaveNotes"/>
+        </route>
+        <route id="_routeNotesEntreprise">
+            <from id="_fromNOE" uri="jms:queue:EnvoiNotesEntreprise"/>
+            <log id="_logNOE" message="Notes recu à l'admin avec succès ! Le message était : ${body}"/>
+            <process id="_processNoE" ref="SaveNotesEntreprise"/>
         </route>
         <route id="_routeProjet">
             <from id="_fromPR" uri="jms:queue:EnvoiProjet"/>

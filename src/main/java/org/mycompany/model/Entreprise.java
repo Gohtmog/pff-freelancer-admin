@@ -40,7 +40,7 @@ public class Entreprise {
 	private List<Test> listeTests;
 
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "idEntreprise")
+//	@JoinColumn(name = "idEntreprise")
 	private List<Projet> listeProjets = new ArrayList<>();
 
 	public Entreprise(int id, String nom, int taille, double capital, List<Notes> listeNotes2, List<Test> listeTests,

@@ -42,7 +42,7 @@ public class ProcessorSaveCandidat implements Processor {
 
 		iCandidatRepository.save(ca);
 
-		System.out.println("On a bien récupéré et enregistré le CV depuis activeMQ : " + ca.toString());
+		System.out.println("On a bien récupéré et enregistré le Candidat depuis activeMQ : " + ca.toString());
 
 	}
 }

@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators.PropertyGenerator;
 @Entity
 @Table
 @Component
-@JsonIdentityInfo(property = "id", generator = PropertyGenerator.class)
+@JsonIdentityInfo(generator = PropertyGenerator.class, property = "id",scope = Entreprise.class)
 public class Entreprise {
 
 	@Id
@@ -33,17 +33,17 @@ public class Entreprise {
 
 	@OneToMany(cascade = CascadeType.ALL)
 //	@JoinColumn(name = "idNotes")
-	private List<Notes> listeNotes;
+	private List<NotesEntreprise> listeNotesEntreprise;
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "T_Test_Entreprise_Associations", joinColumns = @JoinColumn(name = "idTest"), inverseJoinColumns = @JoinColumn(name = "idEntreprise"))
 	private List<Test> listeTests;
 
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "idEntreprise")
+//	@JoinColumn(name = "idEntreprise")
 	private List<Projet> listeProjets = new ArrayList<>();
 
-	public Entreprise(int id, String nom, int taille, double capital, List<Notes> listeNotes2, List<Test> listeTests,
+	public Entreprise(int id, String nom, int taille, double capital, List<NotesEntreprise> listeNotesEntreprise, List<Test> listeTests,
 			List<Projet> listeProjets) {
 		super();
 		this.id = id;
@@ -52,8 +52,8 @@ public class Entreprise {
 		this.capital = capital;
 		int count = 1;
 		int moyNote = 0;
-		for (Notes notes : listeNotes2) {
-			if (notes.getCandidat().getId() == id) {
+		for (NotesEntreprise notes : listeNotesEntreprise) {
+			if (notes.getEntreprise().getId() == id) {
 				moyNotes += notes.getNote();
 				count++;
 			}
@@ -63,10 +63,10 @@ public class Entreprise {
 		} else {
 			moyNotes = moyNotes / count;
 		}
-		moyNote = moyNotes;
+		moyNotes = moyNote;
 		this.listeTests = listeTests;
 		this.listeProjets = listeProjets;
-		this.listeNotes = listeNotes2;
+		this.listeNotesEntreprise = listeNotesEntreprise;
 	}
 
 	public Entreprise(int id, String nom, int taille, double capital) {
@@ -121,12 +121,12 @@ public class Entreprise {
 		this.moyNotes = moyNotes;
 	}
 
-	public List<Notes> getListeNotes() {
-		return listeNotes;
+	public List<NotesEntreprise> getlisteNotesEntreprise() {
+		return listeNotesEntreprise;
 	}
 
-	public void setListeNotes(List<Notes> listeNotes) {
-		this.listeNotes = listeNotes;
+	public void setlisteNotesEntreprise(List<NotesEntreprise> listeNotesEntreprise) {
+		this.listeNotesEntreprise = listeNotesEntreprise;
 	}
 
 	public List<Test> getListeTests() {
@@ -148,7 +148,7 @@ public class Entreprise {
 	@Override
 	public String toString() {
 		return "Entreprise [id=" + id + ", nom=" + nom + ", taille=" + taille + ", capital=" + capital + ", moyNotes="
-				+ moyNotes + ", listeNotes=" + listeNotes + ", listeTests=" + listeTests + ", listeProjets="
+				+ moyNotes + ", listeNotesEntreprise=" + listeNotesEntreprise + ", listeTests=" + listeTests + ", listeProjets="
 				+ listeProjets + "]";
 	}
 

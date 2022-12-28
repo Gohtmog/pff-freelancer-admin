@@ -39,7 +39,7 @@ public class ProcessorSaveTest implements Processor {
 
 		iTestRepository.save(te);
 
-		System.out.println("On a bien récupéré et enregistré le CV depuis activeMQ : " + te.toString());
+		System.out.println("On a bien récupéré et enregistré le test depuis activeMQ : " + te.toString());
 
 	}
 }

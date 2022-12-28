@@ -48,7 +48,7 @@ public class EntrepriseController {
 			Entreprise.setNom(newEntreprise.getNom());
 			Entreprise.setCapital(newEntreprise.getCapital());
 			Entreprise.setMoyNotes(newEntreprise.getMoyNotes());
-			Entreprise.setListeNotes(newEntreprise.getListeNotes());
+			Entreprise.setlisteNotesEntreprise(newEntreprise.getlisteNotesEntreprise());
 			Entreprise.setTaille(newEntreprise.getTaille());
 			Entreprise.setListeProjets(newEntreprise.getListeProjets());
 			Entreprise.setListeTests(newEntreprise.getListeTests());

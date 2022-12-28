@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators.PropertyGenerator;
 @Entity
 @Table
 @Component
-@JsonIdentityInfo(property = "id", generator = PropertyGenerator.class)
+@JsonIdentityInfo(generator = PropertyGenerator.class, property = "id")
 public class Projet {
 
 	@Id

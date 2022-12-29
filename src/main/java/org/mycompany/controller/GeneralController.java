@@ -44,47 +44,6 @@ public class GeneralController {
 	@Autowired
 	ITestRepository itr;
 
-
-	public void lienCVCandidat(CV cv, Candidat candidat) {
-		List<CV> lCV = candidat.getListeCV();
-
-		if (!(lCV.contains(cv))) {
-			lCV.add(cv);
-		} else {
-			System.out.println("Le CV est déjà enregistré chez le candidat.");
-		}
-
-		if (cv.getCandidat() == null) {
-			cv.setCandidat(candidat);
-		} else {
-			System.out.println("Le candidat est déjà enregistré pour ce CV.");
-		}
-
-		candidat.setListeCV(lCV);
-		System.out.println("On a mis à jour CV et/ou candidat.");
-
-	}
-
-	public void lienNoteCandidat(Notes notes, Candidat candidat) {
-		List<Notes> lN = candidat.getListeNotes();
-
-		if (!(lN.contains(notes))) {
-			lN.add(notes);
-		} else {
-			System.out.println("La note est déjà enregistrée chez le candidat.");
-		}
-
-		if (notes.getCandidat() == null) {
-			notes.setCandidat(candidat);
-		} else {
-			System.out.println("Le candidat est déjà enregistré pour cette note.");
-		}
-
-		candidat.setListeNotes(lN);
-		System.out.println("On a mis à jour notes et/ou candidat.");
-
-	}
-
 	
 	@PutMapping("/lierEntrepriseNotesEntreprise/{idNote}/{idEnt}")
 	public Entreprise lierEntrepriseNotesEntreprise(@PathVariable int idNote, @PathVariable int idEnt) {

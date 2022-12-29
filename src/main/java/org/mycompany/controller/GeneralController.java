@@ -92,6 +92,7 @@ public class GeneralController {
 		listeN.add(iner.findById(idNote).get());
 		Entreprise newEnt = ier.findById(idEnt).get();
 		newEnt.setlisteNotesEntreprise(listeN);
+		System.out.println("fin du lignage");
 		return ier.save(newEnt);
 	}
 
@@ -103,6 +104,7 @@ public class GeneralController {
 		listeP.add(ipr.getById(idPro));
 		Entreprise newEnt = ier.findById(idEnt).get();
 		newEnt.setListeProjets(listeP);
+		System.out.println("fin du lignage");
 		return ier.save(newEnt);
 	}
 
@@ -112,6 +114,7 @@ public class GeneralController {
 		listeP.add(ipr.getById(idPro));
 		Candidat newCan2 = icr.findById(idCan).get();
 		newCan2.setListeProjet(listeP);
+		System.out.println("fin du lignage");
 		return icr.save(newCan2);
 
 	}
@@ -122,6 +125,7 @@ public class GeneralController {
 		listeC.add(icr.getById(idCan));
 		Projet newProjet = ipr.findById(idPro).get();
 		newProjet.setListeCandidats(listeC);
+		System.out.println("fin du lignage");
 		return ipr.save(newProjet);
 
 	}
@@ -142,6 +146,7 @@ public class GeneralController {
 		listeNotes.add(inr.getById(idNotes));
 		Candidat newCan2 = icr.findById(idCan).get();
 		newCan2.setListeNotes(listeNotes);
+		System.out.println("fin du lignage");
 		return icr.save(newCan2);
 	}
 

@@ -54,6 +54,14 @@ public class GeneralController {
 		System.out.println("fin du lignage");
 		return ier.save(newEnt);
 	}
+	
+	@PutMapping("/lierNotesEntrepriseEntreprise/{idNote}/{idEnt}")
+	public NotesEntreprise lierNotesEntrepriseEntreprise(@PathVariable int idNoteE, @PathVariable int idEnt) {
+		Entreprise ent = ier.findById(idEnt).get();
+		NotesEntreprise nEnt = iner.findById(idNoteE).get();
+		nEnt.setEntreprise(ent);
+		return iner.save(nEnt);
+	}
 
 
 	
@@ -66,6 +74,17 @@ public class GeneralController {
 		System.out.println("fin du lignage");
 		return ier.save(newEnt);
 	}
+	
+	@PutMapping("/lierProjetEntreprise/{idPro}/{idEnt}")
+	public Projet lierProjetEntreprise(@PathVariable int idPro, @PathVariable int idEnt) {
+		Entreprise ent = ier.findById(idEnt).get();
+		Projet pro = ipr.findById(idPro).get();
+		pro.setEntreprise(ent);
+		return ipr.save(pro);
+	}
+	
+
+	
 
 	@PutMapping("/lierCandidatProjets/{idPro}/{idCan}")
 	public Candidat lierCandidatProjet(@PathVariable int idPro, @PathVariable int idCan) {

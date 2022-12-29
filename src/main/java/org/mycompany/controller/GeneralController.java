@@ -45,10 +45,10 @@ public class GeneralController {
 	ITestRepository itr;
 
 	
-	@PutMapping("/lierEntrepriseNotesEntreprise/{idNote}/{idEnt}")
-	public Entreprise lierEntrepriseNotesEntreprise(@PathVariable int idNote, @PathVariable int idEnt) {
+	@PutMapping("/lierEntrepriseNotesEntreprise/{idNoteE}/{idEnt}")
+	public Entreprise lierEntrepriseNotesEntreprise(@PathVariable int idNoteE, @PathVariable int idEnt) {
 		List<NotesEntreprise> listeN = ier.findById(idEnt).get().getlisteNotesEntreprise();
-		listeN.add(iner.findById(idNote).get());
+		listeN.add(iner.findById(idNoteE).get());
 		Entreprise newEnt = ier.findById(idEnt).get();
 		newEnt.setlisteNotesEntreprise(listeN);
 		System.out.println("fin du lignage");
@@ -96,6 +96,7 @@ public class GeneralController {
 		listeCV.add(icvr.getById(idCV));
 		Candidat newCan2 = icr.findById(idCan).get();
 		newCan2.setListeCV(listeCV);
+		System.out.println("fin du lignage");
 		return icr.save(newCan2);
 	}
 	

@@ -30,7 +30,6 @@ public class Entreprise {
 	private String nom;
 	private int taille;
 	private double capital;
-
 	private int moyNotes;
 
 	@JsonIgnore

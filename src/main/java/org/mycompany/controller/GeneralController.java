@@ -44,27 +44,6 @@ public class GeneralController {
 	@Autowired
 	ITestRepository itr;
 
-	public void lienProjetCandidat(Projet pro, Candidat candidat) {
-		List<Projet> lP = candidat.getListeProjet();
-		List<Candidat> lC = pro.getListeCandidats();
-
-		if (!(lP.contains(pro))) {
-			lP.add(pro);
-		} else {
-			System.out.println("Le projet est déjà enregistré chez le candidat.");
-		}
-
-		if (!(lC.contains(candidat))) {
-			lC.add(candidat);
-		} else {
-			System.out.println("Le candidat est déjà enregistré pour ce projet.");
-		}
-
-		candidat.setListeProjet(lP);
-		pro.setListeCandidats(lC);
-		System.out.println("On a mis à jour projet et/ou candidat.");
-
-	}
 
 	public void lienCVCandidat(CV cv, Candidat candidat) {
 		List<CV> lCV = candidat.getListeCV();

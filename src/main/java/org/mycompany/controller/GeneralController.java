@@ -163,7 +163,25 @@ public class GeneralController {
 
 	}
 
-//	@PutMapping("/updateProjet{id}")
+
+	@PutMapping("/lierCandidatCVs/{idPro}/{idCan}")
+	public Candidat lierCandidatCV(@PathVariable int idCV, @PathVariable int idCan) {
+		List<CV> listeCV = icr.findById(idCan).get().getListeCV();
+		listeCV.add(icvr.getById(idCV));
+		Candidat newCan2 = icr.findById(idCan).get();
+		newCan2.setListeCV(listeCV);
+		return icr.save(newCan2);
+	}
+	
+	@PutMapping("/lierCandidatNotes/{idPro}/{idCan}")
+	public Candidat lierCandidatNotes(@PathVariable int idNotes, @PathVariable int idCan) {
+		List<Notes> listeNotes = icr.findById(idCan).get().getListeNotes();
+		listeNotes.add(inr.getById(idNotes));
+		Candidat newCan2 = icr.findById(idCan).get();
+		newCan2.setListeNotes(listeNotes);
+		return icr.save(newCan2);
+	}
+//	@PutMapping("/updateCV{id}")
 //	public Projet updateProjet(@RequestBody Projet newProjet, @PathVariable int id) {
 //		return ier.findById(id).map(Projet -> {
 //			Projet.setId(newProjet.getId());

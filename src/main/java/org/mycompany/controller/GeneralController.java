@@ -37,14 +37,13 @@ public class GeneralController {
 
 	@Autowired
 	INotesRepository inr;
-	
+
 	@Autowired
 	INotesEntrepriseRepository iner;
 
 	@Autowired
 	ITestRepository itr;
 
-	
 	@PutMapping("/lierEntrepriseNotesEntreprise/{idNoteE}/{idEnt}")
 	public Entreprise lierEntrepriseNotesEntreprise(@PathVariable int idNoteE, @PathVariable int idEnt) {
 		List<NotesEntreprise> listeN = ier.findById(idEnt).get().getlisteNotesEntreprise();
@@ -54,8 +53,8 @@ public class GeneralController {
 		System.out.println("fin du lignage");
 		return ier.save(newEnt);
 	}
-	
-	@PutMapping("/lierNotesEntrepriseEntreprise/{idNote}/{idEnt}")
+
+	@PutMapping("/lierNotesEntrepriseEntreprise/{idNoteE}/{idEnt}")
 	public NotesEntreprise lierNotesEntrepriseEntreprise(@PathVariable int idNoteE, @PathVariable int idEnt) {
 		Entreprise ent = ier.findById(idEnt).get();
 		NotesEntreprise nEnt = iner.findById(idNoteE).get();
@@ -63,8 +62,6 @@ public class GeneralController {
 		return iner.save(nEnt);
 	}
 
-
-	
 	@PutMapping("/lierEntrepriseProjets/{idPro}/{idEnt}")
 	public Entreprise lierEntrepriseProjet(@PathVariable int idPro, @PathVariable int idEnt) {
 		List<Projet> listeP = ier.findById(idEnt).get().getListeProjets();
@@ -74,7 +71,7 @@ public class GeneralController {
 		System.out.println("fin du lignage");
 		return ier.save(newEnt);
 	}
-	
+
 	@PutMapping("/lierProjetEntreprise/{idPro}/{idEnt}")
 	public Projet lierProjetEntreprise(@PathVariable int idPro, @PathVariable int idEnt) {
 		Entreprise ent = ier.findById(idEnt).get();
@@ -82,20 +79,18 @@ public class GeneralController {
 		pro.setEntreprise(ent);
 		return ipr.save(pro);
 	}
-	
 
-	
-
-	@PutMapping("/lierCandidatProjets/{idPro}/{idCan}")
-	public Candidat lierCandidatProjet(@PathVariable int idPro, @PathVariable int idCan) {
-		List<Projet> listeP = icr.findById(idCan).get().getListeProjet();
-		listeP.add(ipr.getById(idPro));
-		Candidat newCan2 = icr.findById(idCan).get();
-		newCan2.setListeProjet(listeP);
-		System.out.println("fin du lignage");
-		return icr.save(newCan2);
-
-	}
+//
+//	@PutMapping("/lierCandidatProjets/{idPro}/{	idCan}")
+//	public Candidat lierCandidatProjet(@PathVariable int idPro, @PathVariable int idCan) {
+//		List<Projet> listeP = icr.findById(idCan).get().getListeProjet();
+//		listeP.add(ipr.getById(idPro));
+//		Candidat newCan2 = icr.findById(idCan).get();
+//		newCan2.setListeProjet(listeP);
+//		System.out.println("fin du lignage");
+//		return icr.save(newCan2);
+//
+//	}
 
 	@PutMapping("/lierProjetsCandidat/{idPro}/{idCan}")
 	public Projet lierProjetCandidat(@PathVariable int idPro, @PathVariable int idCan) {
@@ -108,8 +103,7 @@ public class GeneralController {
 
 	}
 
-
-	@PutMapping("/lierCandidatCVs/{idPro}/{idCan}")
+	@PutMapping("/lierCandidatCV/{idCV}/{idCan}")
 	public Candidat lierCandidatCV(@PathVariable int idCV, @PathVariable int idCan) {
 		List<CV> listeCV = icr.findById(idCan).get().getListeCV();
 		listeCV.add(icvr.getById(idCV));
@@ -118,8 +112,8 @@ public class GeneralController {
 		System.out.println("fin du lignage");
 		return icr.save(newCan2);
 	}
-	
-	@PutMapping("/lierCandidatNotes/{idPro}/{idCan}")
+
+	@PutMapping("/lierCandidatNotes/{idNotes}/{idCan}")
 	public Candidat lierCandidatNotes(@PathVariable int idNotes, @PathVariable int idCan) {
 		List<Notes> listeNotes = icr.findById(idCan).get().getListeNotes();
 		listeNotes.add(inr.getById(idNotes));
@@ -127,6 +121,22 @@ public class GeneralController {
 		newCan2.setListeNotes(listeNotes);
 		System.out.println("fin du lignage");
 		return icr.save(newCan2);
+	}
+
+	@PutMapping("/lierCVCandidat/{idCV}/{idCan}")
+	public CV lierCVCandidat(@PathVariable int idCV, @PathVariable int idCan) {
+		Candidat can = icr.findById(idCan).get();
+		CV cv = icvr.findById(idCV).get();
+		cv.setCandidat(can);
+		return icvr.save(cv);
+	}
+
+	@PutMapping("/lierNotesCandidat/{idNotes}/{idCan}")
+	public Notes lierNotesCandidat(@PathVariable int idNotes, @PathVariable int idCan) {
+		Candidat can = icr.findById(idCan).get();
+		Notes notes = inr.findById(idNotes).get();
+		notes.setCandidat(can);
+		return inr.save(notes);
 	}
 
 }

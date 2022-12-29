@@ -54,10 +54,10 @@ public class ProcessorSaveCandidat implements Processor {
 
 		iCandidatRepository.save(ca);
 		
-		for (Projet pro : ca.getListeProjet()) {
-			generalController.lienProjetCandidat(pro, ca);
-			iProjetRepository.save(pro);
-		}
+//		for (Projet pro : ca.getListeProjet()) {
+//			generalController.lienProjetCandidat(pro, ca);
+//			iProjetRepository.save(pro);
+//		}
 //		
 //		for (CV cv : ca.getListeCV()) {
 //			generalController.lienCVCandidat(cv, ca);

@@ -1,5 +1,6 @@
 package org.mycompany.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -19,7 +20,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators.PropertyGenerator;
 @Entity
 @Table
 @Component
-@JsonIdentityInfo(generator = PropertyGenerator.class, property = "id", scope = Candidat.class)
+//@JsonIdentityInfo(generator = PropertyGenerator.class, property = "id", scope = Candidat.class)
 public class Candidat {
 
 	@Id
@@ -45,7 +46,7 @@ public class Candidat {
 	public Candidat() {
 		super();
 	}
-
+	
 	public Candidat(int id, String nom, String prenom, List<Projet> listeProjet, List<CV> listeCV,
 			List<Notes> listeNotes2) {
 		super();

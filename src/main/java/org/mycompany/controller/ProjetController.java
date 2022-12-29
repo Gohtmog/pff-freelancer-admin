@@ -33,6 +33,10 @@ public class ProjetController {
 	public List<Projet> getProjets() {
 		return ier.findAll();
 	}
+	
+
+	
+	
 
 	@PostMapping("/saveProjet")
 	public void saveProjet(@RequestBody Projet pro) {

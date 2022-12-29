@@ -11,13 +11,13 @@ import org.mycompany.model.Projet;
 import org.mycompany.repo.ICVRepository;
 import org.mycompany.repo.ICandidatRepository;
 import org.mycompany.repo.IEntrepriseRepository;
+import org.mycompany.repo.INotesEntrepriseRepository;
 import org.mycompany.repo.INotesRepository;
 import org.mycompany.repo.IProjetRepository;
 import org.mycompany.repo.ITestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -37,6 +37,9 @@ public class GeneralController {
 
 	@Autowired
 	INotesRepository inr;
+	
+	@Autowired
+	INotesEntrepriseRepository iner;
 
 	@Autowired
 	ITestRepository itr;
@@ -103,44 +106,25 @@ public class GeneralController {
 
 	}
 
-	public void lienNoteEntrepriseEntreprise(NotesEntreprise notesE, Entreprise ent) {
-		List<NotesEntreprise> lNE = ent.getlisteNotesEntreprise();
-
-		if (!(lNE.contains(notesE))) {
-			lNE.add(notesE);
-		} else {
-			System.out.println("La note est déjà enregistrée chez l'entreprise.");
-		}
-
-		if (notesE.getEntreprise() == null) {
-			notesE.setEntreprise(ent);
-		} else {
-			System.out.println("L'entreprise est déjà enregistrée pour cette note.");
-		}
-
-		ent.setlisteNotesEntreprise(lNE);
-		System.out.println("On a mis à jour notes et/ou entreprise.");
-
+	
+	@PutMapping("/lierEntrepriseNotesEntreprise/{idNote}/{idEnt}")
+	public Entreprise lierEntrepriseNotesEntreprise(@PathVariable int idNote, @PathVariable int idEnt) {
+		List<NotesEntreprise> listeN = ier.findById(idEnt).get().getlisteNotesEntreprise();
+		listeN.add(iner.findById(idNote).get());
+		Entreprise newEnt = ier.findById(idEnt).get();
+		newEnt.setlisteNotesEntreprise(listeN);
+		return ier.save(newEnt);
 	}
 
-	public void lienProjetEntreprise(Projet pro, Entreprise ent) {
-		List<Projet> lP = ent.getListeProjets();
 
-		if (!(lP.contains(pro))) {
-			lP.add(pro);
-		} else {
-			System.out.println("Le projet est déjà enregistré pour cette entreprise.");
-		}
-
-		if (pro.getEntreprise() == null) {
-			pro.setEntreprise(ent);
-		} else {
-			System.out.println("L'entreprise est déjà enregistrée pour ce projet.");
-		}
-
-		ent.setListeProjets(lP);
-		System.out.println("On a mis à jour projet et/ou entreprise.");
-
+	
+	@PutMapping("/lierEntrepriseProjets/{idPro}/{idEnt}")
+	public Entreprise lierEntrepriseProjet(@PathVariable int idPro, @PathVariable int idEnt) {
+		List<Projet> listeP = ier.findById(idEnt).get().getListeProjets();
+		listeP.add(ipr.getById(idPro));
+		Entreprise newEnt = ier.findById(idEnt).get();
+		newEnt.setListeProjets(listeP);
+		return ier.save(newEnt);
 	}
 
 	@PutMapping("/lierCandidatProjets/{idPro}/{idCan}")
@@ -162,20 +146,5 @@ public class GeneralController {
 		return ipr.save(newProjet);
 
 	}
-
-//	@PutMapping("/updateProjet{id}")
-//	public Projet updateProjet(@RequestBody Projet newProjet, @PathVariable int id) {
-//		return ier.findById(id).map(Projet -> {
-//			Projet.setId(newProjet.getId());
-//			Projet.setIntitule(newProjet.getIntitule());
-//			Projet.setSalaire(newProjet.getSalaire());
-//			Projet.setDuree(newProjet.getDuree());
-//			Projet.setTailleEquipe(newProjet.getTailleEquipe());
-//			Projet.setEntreprise(newProjet.getEntreprise());
-//			Projet.setListeCandidats(newProjet.getListeCandidats());
-//			return ier.save(Projet);
-//		}).orElseGet(() -> {
-//			return ier.save(newProjet);
-//		});
 
 }

@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators.PropertyGenerator;
 
 @Entity
@@ -31,11 +33,13 @@ public class Entreprise {
 
 	private int moyNotes;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "Entreprise")
+	@JsonIgnore
+	@OneToMany(mappedBy = "Entreprise")
 //	@JoinColumn(name = "idNotes")
 	private List<NotesEntreprise> listeNotesEntreprise;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "entreprise")
+	@JsonIgnore
+	@OneToMany(mappedBy = "entreprise")
 //	@JoinColumn(name = "idEntreprise")
 	private List<Projet> listeProjets;
 
@@ -137,8 +141,7 @@ public class Entreprise {
 	@Override
 	public String toString() {
 		return "Entreprise [id=" + id + ", nom=" + nom + ", taille=" + taille + ", capital=" + capital + ", moyNotes="
-				+ moyNotes + ", listeNotesEntreprise=" + listeNotesEntreprise + ", listeProjets="
-				+ listeProjets + "]";
+				+ moyNotes + "]";
 	}
 
 }

@@ -10,6 +10,8 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators.PropertyGenerator;
 
 @Entity
@@ -21,7 +23,9 @@ public class CV {
 	private int id;
 	private String description;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	
+	@JsonIgnore
+	@ManyToOne
 	@JoinColumn(name = "idCandidat")
 	private Candidat candidat;
 
@@ -63,7 +67,7 @@ public class CV {
 
 	@Override
 	public String toString() {
-		return "CV [id=" + id + ", description=" + description + ", candidat=" + candidat.getId() + "]";
+		return "CV [id=" + id + ", description=" + description +  "]";
 	}
 
 }

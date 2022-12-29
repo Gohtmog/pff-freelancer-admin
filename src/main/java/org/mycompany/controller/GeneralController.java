@@ -149,6 +149,8 @@ public class GeneralController {
 		Projet pro = ipr.findById(idPro).get();
 		System.out.println("projet" +pro);
 		List<Candidat> listeC = ipr.findById(idPro).get().getListeCandidats();
+		Candidat cand = icr.findById(idCan).get();
+		System.out.println(cand);
 		System.out.println("liste candidat : " +listeC);
 		listeC.add(icr.findById(idCan).get());
 		System.out.println("liste candidat modifier : " +listeC);

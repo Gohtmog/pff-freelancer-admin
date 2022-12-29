@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators.PropertyGenerator;
 
 @Entity
@@ -30,23 +32,25 @@ public class Candidat {
 
 	private int moyNotes;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@JsonIgnore
+	@ManyToMany
 	@JoinTable(name = "T_Projet_Candidat_Associations", joinColumns = @JoinColumn(name = "idProjet"), inverseJoinColumns = @JoinColumn(name = "idCandidat"))
 	private List<Projet> listeProjets;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "candidat")
+	@JsonIgnore
+	@OneToMany(mappedBy = "candidat")
 //	@JoinColumn(name = "idCV")
 	private List<CV> listeCV;
-	
-	
-	@OneToMany(cascade = CascadeType.ALL , mappedBy = "candidat")
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "candidat")
 //	@JoinColumn(name = "idNotes")
 	private List<Notes> listeNotes;
 
 	public Candidat() {
 		super();
 	}
-	
+
 	public Candidat(int id, String nom, String prenom, List<Projet> listeProjet, List<CV> listeCV,
 			List<Notes> listeNotes2) {
 		super();
@@ -58,11 +62,11 @@ public class Candidat {
 		for (Notes notes : listeNotes2) {
 			if (notes.getCandidat().getId() == id) {
 				moyNotes += notes.getNote();
-			count++;
-		}
+				count++;
+			}
 		}
 		if (count == 1) {
-			moyNotes =  0;
+			moyNotes = 0;
 		} else {
 			moyNotes = moyNotes / count;
 		}
@@ -70,7 +74,7 @@ public class Candidat {
 		this.listeProjets = listeProjet;
 		this.listeCV = listeCV;
 		this.listeNotes = listeNotes2;
-	
+
 	}
 
 	public int getId() {
@@ -113,7 +117,6 @@ public class Candidat {
 		listeProjets = listeProjet;
 	}
 
-
 	public List<CV> getListeCV() {
 		return listeCV;
 	}
@@ -121,7 +124,6 @@ public class Candidat {
 	public void setListeCV(List<CV> listeCV) {
 		this.listeCV = listeCV;
 	}
-
 
 	public List<Notes> getListeNotes() {
 		return listeNotes;
@@ -133,9 +135,7 @@ public class Candidat {
 
 	@Override
 	public String toString() {
-		return "Candidat [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", moyNotes=" + moyNotes
-				+ ", ListeProjet=" + listeProjets + ", listeCV=" + listeCV + ", listeNotes="
-				+ listeNotes + "]";
+		return "Candidat [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", moyNotes=" + moyNotes + "]";
 	}
 
 }
